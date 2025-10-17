@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-10-17T12:00:00Z",
+  "description": "TiviMate Panel Discovery Service",
+  
+  "api_url": "https://worker3.ruffy80hh.workers.dev/api",
+  
+  "backup_urls": [
+    "https://lautaron.mygamesonline.org/api/"
+  ],
+  
+  "force_update_url": "https://lautaron.mygamesonline.org/force_update.php",
+  
+  "health_check_url": "https://worker3.ruffy80hh.workers.dev/health",
+  
+  "status": "online",
+  "maintenance": false,
+  "maintenance_message": "",
+  
+  "min_app_version": "1.0.0",
+  "recommended_app_version": "1.0.0",
+  
+  "update_info": {
+    "last_change": "2025-10-17",
+    "reason": "Initial setup",
+    "affects": "all_users"
+  },
+  
+  "support": {
+    "email": "support@example.com",
+    "website": "https://example.com",
+    "phone": ""
+  },
+  
+  "cache_control": {
+    "ttl": 300,
+    "force_refresh": false
+  }
+}

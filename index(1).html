@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiviMate Discovery Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .status-box {
+            background: #d4edda;
+            border: 2px solid #c3e6cb;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            background: #28a745;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .info-value {
+            font-size: 16px;
+            color: #333;
+            font-weight: 600;
+            word-break: break-all;
+        }
+        
+        .api-url {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .feature-list {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .feature-list h3 {
+            color: #0c5460;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .feature-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            color: #0c5460;
+            font-size: 14px;
+        }
+        
+        .feature-list li:before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 TiviMate Discovery Service</h1>
+        <p class="subtitle">Unveränderliche API-Discovery für maximale Ausfallsicherheit</p>
+        
+        <div class="status-box">
+            <div class="status-indicator"></div>
+            <div>
+                <strong>System Status: Online</strong><br>
+                <small>Alle Dienste funktionieren normal</small>
+            </div>
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Version</div>
+                <div class="info-value" id="version">Lädt...</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Letzte Aktualisierung</div>
+                <div class="info-value" id="updated">Lädt...</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Status</div>
+                <div class="info-value" id="status">Lädt...</div>
+            </div>
+        </div>
+        
+        <h3 style="margin-bottom: 10px;">📡 Aktuelle API-URL:</h3>
+        <div class="api-url" id="apiUrl">Lädt...</div>
+        
+        <div class="buttons">
+            <a href="api.json" class="btn btn-primary" target="_blank">📄 Discovery JSON</a>
+            <button class="btn btn-secondary" onclick="testApi()">🧪 API testen</button>
+            <a href="https://github.com/USERNAME/tivimate-discovery" class="btn btn-secondary" target="_blank">💻 GitHub Repo</a>
+        </div>
+        
+        <div class="feature-list">
+            <h3>💡 Wie funktioniert's?</h3>
+            <ul>
+                <li>Apps fragen diese unveränderliche URL nach der aktuellen API</li>
+                <li>Bei Hosting-Wechsel: Nur diese Datei ändern</li>
+                <li>Alle Apps bekommen automatisch die neue URL</li>
+                <li>Keine App-Neuinstallation nötig</li>
+                <li>Maximale Ausfallsicherheit durch Backup-URLs</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>Powered by GitHub Pages • Hosted on GitHub's global CDN</p>
+            <p>99.9% Uptime Guarantee • Always Available</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Lade Discovery-Daten
+        fetch('api.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('version').textContent = data.version;
+                document.getElementById('updated').textContent = new Date(data.updated).toLocaleDateString('de-DE');
+                document.getElementById('status').textContent = data.status === 'online' ? '🟢 Online' : '🔴 Offline';
+                document.getElementById('apiUrl').textContent = data.api_url;
+            })
+            .catch(error => {
+                console.error('Fehler beim Laden:', error);
+                document.getElementById('apiUrl').textContent = 'Fehler beim Laden';
+            });
+        
+        // API-Test
+        function testApi() {
+            fetch('api.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Teste Haupt-API
+                    return fetch(data.api_url.replace('/api', '/health'))
+                })
+                .then(response => response.json())
+                .then(health => {
+                    alert('✅ API ist erreichbar!\n\nStatus: ' + health.status);
+                })
+                .catch(error => {
+                    alert('❌ API-Test fehlgeschlagen\n\n' + error.message);
+                });
+        }
+    </script>
+</body>
+</html>
