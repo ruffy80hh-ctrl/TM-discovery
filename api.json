@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "updated": "2025-10-17T12:00:00Z",
-  "api_url": "https://worker3.ruffy80hh.workers.dev/api",
+  "updated": "2025-10-18T21:30:00Z",
+  "api_url": "https://worker3.ruffy80hh.workers.dev/api/",
   "backup_urls": [
     "https://lautaron.mygamesonline.org/api/"
   ],
