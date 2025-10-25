@@ -1,33 +1,3 @@
 {
-  "version": "2.1.0",
-  "updated": "2025-10-26T12:00:00Z",
-  
-  "endpoints": [
-    {
-      "name": "primary-cloudflare",
-      "url": "https://tm-discovery.ruffy80hh.workers.dev/api",
-      "priority": 1,
-      "type": "cloudflare-worker",
-      "status": "active"
-    },
-    {
-      "name": "backup-deno",
-      "url": "https://tivimate-backup.deno.dev/api",
-      "priority": 2,
-      "type": "deno-deploy",
-      "status": "active"
-    },
-    {
-      "name": "direct-worker",
-      "url": "https://worker3.ruffy80hh.workers.dev/api",
-      "priority": 3,
-      "type": "direct",
-      "status": "active"
-    }
-  ],
-  
-  "fallback_strategy": "sequential",
-  "ttl_seconds": 300,
-  "status": "online",
-  "maintenance": false
+  "url": "https://worker3.ruffy80hh.workers.dev"
 }
